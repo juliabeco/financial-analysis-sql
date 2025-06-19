@@ -214,4 +214,12 @@ FROM ingresos i
 JOIN gastos g ON i.empresa_id = g.empresa_id AND i.año = g.año
 ORDER BY i.empresa_id, i.año;
 
+#TOP 5 PERFORMING COMPANIES
+SELECT e.nombre, i.año, (i.ingresos - g.gastos) AS ganancia_neta
+FROM ingresos i
+JOIN gastos g ON i.empresa_id = g.empresa_id AND i.año = g.año
+JOIN empresas e ON e.id = i.empresa_id
+ORDER BY ganancia_neta DESC
+LIMIT 5;
+
 #EXPORT CSV FILES TO CREATE A DASHBOARD IN POWER BI (SEE POWER BI PROJECTS)
